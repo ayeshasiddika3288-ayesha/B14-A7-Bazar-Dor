@@ -34,9 +34,16 @@ export const auth = betterAuth({
     baseURL,
     "http://localhost:3000",
     "https://b14-a7-bazar-dor-six.vercel.app",
+    "https://*.vercel.app",
   ],
   emailAndPassword: {
     enabled: true,
+  },
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["github", "google"],
+    },
   },
   socialProviders: {
     ...(google ? { google } : {}),
