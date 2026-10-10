@@ -1,6 +1,5 @@
 const BN_DIGITS = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
 
-// "1850.5" -> "১,৮৫০.৫"
 export function toBn(value: number | string): string {
   const str =
     typeof value === "number"
@@ -17,11 +16,27 @@ export function formatChange(percent: number): string {
   return `${toBn(Math.abs(percent).toFixed(1))}%`;
 }
 
+const UNIT_LABEL: Record<string, string> = {
+  kg: "প্রতি কেজি",
+  litre: "প্রতি লিটার",
+  dozen: "প্রতি ডজন",
+  piece: "প্রতি পিস",
+};
+const UNIT_SHORT: Record<string, string> = {
+  kg: "কেজি",
+  litre: "লিটার",
+  dozen: "ডজন",
+  piece: "পিস",
+};
+export const unitLabel = (u: string) => UNIT_LABEL[u] ?? u;
+export const unitShort = (u: string) => UNIT_SHORT[u] ?? u;
+
 export function banglaToday(): string {
   return new Intl.DateTimeFormat("bn-BD", {
     weekday: "long",
     day: "numeric",
     month: "long",
     year: "numeric",
+    timeZone: "Asia/Dhaka",
   }).format(new Date());
 }
