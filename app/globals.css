@@ -7,6 +7,10 @@
   --card-bg: #fafcfa;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--page-bg);
   color: #111827;
